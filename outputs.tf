@@ -1,5 +1,6 @@
 output "aws_access_key" {
   value       = local.create_iam_user ? aws_iam_access_key.this[0].id : var.aws_access_key
+  sensitive   = true
   description = "AWS Access Key"
 }
 
@@ -11,46 +12,55 @@ output "aws_secret_key" {
 
 output "aws_iam_user_name" {
   value       = local.create_iam_user ? aws_iam_user.this[0].name : ""
+  sensitive   = true
   description = "Created AWS User name"
 }
 
 output "aws_iam_user_arn" {
   value       = local.create_iam_user ? aws_iam_user.this[0].arn : ""
+  sensitive   = true
   description = "The ARN assigned by AWS for the created IAM User"
 }
 
 output "aws_iam_user_id" {
   value       = local.create_iam_user ? aws_iam_user.this[0].unique_id : ""
+  sensitive   = true
   description = "The ID assigned by AWS for the created IAM User"
 }
 
 output "aws_iam_vpc_site_policy_arn" {
   value       = local.create_iam_user ? aws_iam_policy.vpc_site[0].arn : ""
+  sensitive   = true
   description = "Created AWS IAM VPC Site Policy arn"
 }
 
 output "aws_iam_tgw_site_policy_arn" {
   value       = local.create_iam_user && var.create_aws_tgw_iam ? aws_iam_policy.tgw_site[0].arn : ""
+  sensitive   = true
   description = "Created AWS IAM TGW Site Policy arn"
 }
 
 output "aws_iam_directconnect_policy_arn" {
   value       = local.create_iam_user && var.create_direct_connect_iam ? aws_iam_policy.directconnect[0].arn : ""
+  sensitive   = true
   description = "Created AWS IAM DirectConnect Policy arn"
 }
 
 output "aws_iam_vpc_site_policy_name" {
   value       = local.create_iam_user ? aws_iam_policy.vpc_site[0].name : ""
+  sensitive   = true
   description = "Created AWS IAM VPC Site Policy name"
 }
 
 output "aws_iam_tgw_site_policy_name" {
   value       = local.create_iam_user && var.create_aws_tgw_iam ? aws_iam_policy.tgw_site[0].name : ""
+  sensitive   = true
   description = "Created AWS IAM TGW Site Policy name"
 }
 
 output "aws_iam_directconnect_policy_name" {
   value       = local.create_iam_user && var.create_direct_connect_iam ? aws_iam_policy.directconnect[0].name : ""
+  sensitive   = true
   description = "Created AWS IAM DirectConnect Policy name"
 }
 

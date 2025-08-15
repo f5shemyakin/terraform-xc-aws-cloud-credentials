@@ -13,7 +13,7 @@ resource "aws_iam_access_key" "this" {
   count = local.create_iam_user ? 1 : 0
 
   user = local.create_iam_user ? aws_iam_user.this[0].name : null
-  depends_on = [ 
+  depends_on = [
     aws_iam_user.this[0]
   ]
 }
@@ -27,7 +27,7 @@ resource "aws_iam_policy" "tgw_site" {
 
   tags = var.tags
 
-  depends_on = [ 
+  depends_on = [
     aws_iam_user.this[0]
   ]
 }
@@ -38,7 +38,7 @@ resource "aws_iam_user_policy_attachment" "tgw_site" {
   user       = local.create_iam_user ? aws_iam_user.this[0].name : null
   policy_arn = aws_iam_policy.tgw_site[0].arn
 
-  depends_on = [ 
+  depends_on = [
     aws_iam_policy.tgw_site[0]
   ]
 }
@@ -46,8 +46,8 @@ resource "aws_iam_user_policy_attachment" "tgw_site" {
 data "aws_iam_policy_document" "tgw_site" {
   version = "2012-10-17"
   statement {
-    sid     = "EC2TGWPermissions"
-    effect  = "Allow"
+    sid    = "EC2TGWPermissions"
+    effect = "Allow"
     actions = [
       "ec2:AcceptTransitGatewayVpcAttachment",
       "ec2:AssociateTransitGatewayRouteTable",
@@ -91,7 +91,7 @@ resource "aws_iam_policy" "directconnect" {
 
   tags = var.tags
 
-  depends_on = [ 
+  depends_on = [
     aws_iam_user.this[0]
   ]
 }
@@ -102,7 +102,7 @@ resource "aws_iam_user_policy_attachment" "directconnect" {
   user       = local.create_iam_user ? aws_iam_user.this[0].name : null
   policy_arn = aws_iam_policy.directconnect[0].arn
 
-  depends_on = [ 
+  depends_on = [
     aws_iam_policy.directconnect[0]
   ]
 }
@@ -110,8 +110,8 @@ resource "aws_iam_user_policy_attachment" "directconnect" {
 data "aws_iam_policy_document" "directconnect" {
   version = "2012-10-17"
   statement {
-    sid     = "DirectConnectPermissions"
-    effect  = "Allow"
+    sid    = "DirectConnectPermissions"
+    effect = "Allow"
     actions = [
       "directconnect:AllocateHostedConnection",
       "directconnect:AllocatePrivateVirtualInterface",
@@ -153,7 +153,7 @@ resource "aws_iam_user_policy_attachment" "vpc_site" {
   user       = local.create_iam_user ? aws_iam_user.this[0].name : null
   policy_arn = aws_iam_policy.vpc_site[0].arn
 
-  depends_on = [ 
+  depends_on = [
     aws_iam_policy.vpc_site[0]
   ]
 }
@@ -167,7 +167,7 @@ resource "aws_iam_policy" "vpc_site" {
 
   tags = var.tags
 
-  depends_on = [ 
+  depends_on = [
     aws_iam_user.this[0]
   ]
 }
@@ -175,8 +175,8 @@ resource "aws_iam_policy" "vpc_site" {
 data "aws_iam_policy_document" "vpc_site" {
   version = "2012-10-17"
   statement {
-    sid     = "AutoScalingPermissions"
-    effect  = "Allow"
+    sid    = "AutoScalingPermissions"
+    effect = "Allow"
     actions = [
       "autoscaling:AttachLoadBalancerTargetGroups",
       "autoscaling:AttachLoadBalancers",
@@ -199,8 +199,8 @@ data "aws_iam_policy_document" "vpc_site" {
     resources = ["*"]
   }
   statement {
-    sid     = "EC2Permissions"
-    effect  = "Allow"
+    sid    = "EC2Permissions"
+    effect = "Allow"
     actions = [
       "ec2:AllocateAddress",
       "ec2:AssignPrivateIpAddresses",
@@ -303,8 +303,8 @@ data "aws_iam_policy_document" "vpc_site" {
   }
 
   statement {
-    sid     = "ELBPermissions"
-    effect  = "Allow"
+    sid    = "ELBPermissions"
+    effect = "Allow"
     actions = [
       "elasticloadbalancing:AddTags",
       "elasticloadbalancing:CreateListener",
@@ -331,9 +331,9 @@ data "aws_iam_policy_document" "vpc_site" {
     ]
     resources = ["*"]
   }
-    statement {
-    sid     = "IAMPermissions"
-    effect  = "Allow"
+  statement {
+    sid    = "IAMPermissions"
+    effect = "Allow"
     actions = [
       "iam:AddRoleToInstanceProfile",
       "iam:AttachRolePolicy",

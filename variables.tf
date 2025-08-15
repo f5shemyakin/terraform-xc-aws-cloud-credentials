@@ -1,13 +1,16 @@
 variable "tags" {
   description = "A map of tags to add to all resources"
   type        = map(string)
-  default     = {}
+  default = {
+    Environment = "dev"
+    Name        = "xc-aws"
+  }
 }
 
 variable "name" {
   description = "Cloud Credentials name"
   type        = string
-  default     = ""
+  default     = "xc-aws"
 }
 
 variable "aws_access_key" {
