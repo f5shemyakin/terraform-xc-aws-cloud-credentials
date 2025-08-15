@@ -1,5 +1,6 @@
 output "access_key" {
   description = "AWS Access Key"
+  sensitive   = true
   value       = module.aws_creds.aws_access_key
 }
 

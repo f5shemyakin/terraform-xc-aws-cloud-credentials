@@ -1,5 +1,6 @@
 output "access_key" {
   description = "AWS Access Key"
+  sensitive   = true
   value       = module.aws_creds.aws_access_key
 }
 
@@ -11,6 +12,7 @@ output "secret_key" {
 
 output "user" {
   description = "AWS IAM user name"
+  sensitive   = true
   value       = module.aws_creds.aws_iam_user_name
 }
 
