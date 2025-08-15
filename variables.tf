@@ -11,6 +11,11 @@ variable "name" {
   description = "Cloud Credentials name"
   type        = string
   default     = "xc-aws"
+
+  validation {
+    condition     = length(var.name) > 0 && length(var.name) <= 64
+    error_message = "Name must be between 1 and 64 characters."
+  }
 }
 
 variable "aws_access_key" {
